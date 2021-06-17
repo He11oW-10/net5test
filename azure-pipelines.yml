@@ -36,21 +36,13 @@ stages:
       inputs:
          rootFolderOrFile: 'publish_output/'
          includeRootFolder: false
+         
+    - task: AzureFunctionApp@1
+      displayName: 'Deploy Azure Function App'
+      inputs:
+         azureSubscription: 'MAIC - Wicresoft - Azure - 09 (7bfee15b-b0d8-489b-89d7-604bbd66603a)'
+         appType: 'functionAppLinux'
+         appName: 'net5test2021-03'
+         package: '$(Build.StagingDirectory)/*.zip'
 
-- stage: Deploy_Production
-  jobs:
-  - deployment: Deploy
-    pool:
-      vmImage: 'vs2017-win2016'
-    environment: 'Production'
-    strategy: 
-      runOnce:
-        deploy:
-          steps:
-          - task: AzureFunctionApp@1
-            displayName: 'Deploy Azure Function App'
-            inputs:
-              azureSubscription: 'MAIC - Wicresoft - Azure - 09 (7bfee15b-b0d8-489b-89d7-604bbd66603a)'
-              appType: 'functionAppLinux'
-              appName: 'net5test2021-03'
-              package: '$(Build.StagingDirectory)/*.zip'
+
