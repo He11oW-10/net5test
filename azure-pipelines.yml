@@ -53,4 +53,4 @@ stages:
               azureSubscription: 'MAIC - Wicresoft - Azure - 09 (7bfee15b-b0d8-489b-89d7-604bbd66603a)'
               appType: 'functionAppLinux'
               appName: 'net5test2021-03'
-              package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+              package: '$(Build.StagingDirectory)/**/*.zip'
